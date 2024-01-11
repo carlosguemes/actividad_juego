@@ -169,7 +169,6 @@ class EmberPlayer extends SpriteAnimationComponent
     position += velocidad * dt;
 
     screenWidth = gameRef.size.x;
-
     /*if (enElAire) {
       velocidad.y += gravedad * dt;
     }
