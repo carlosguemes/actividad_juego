@@ -9,6 +9,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import '../elementos/Estrella.dart';
 import '../elementos/Gota.dart';
 import '../players/EmberPlayer.dart';
+import '../players/EmberPlayer2.dart';
 import '../players/WaterPlayer.dart';
 
 class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
@@ -27,6 +28,7 @@ class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
   late double tamanyo;
 
   late EmberPlayer _player;
+  late EmberPlayer2 _player2;
   late WaterPlayer _water;
 
   @override
@@ -86,6 +88,11 @@ class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
       position: Vector2(canvasSize.x/2 - 50, canvasSize.y/2 + 50),
     );
     world.add(_water);
+
+    _player2 = EmberPlayer2(
+      position: Vector2(200, canvasSize.y-100),
+    );
+    world.add(_player2);
   }
 
 }

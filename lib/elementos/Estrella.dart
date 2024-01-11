@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../games/ClaseGame.dart';
 
-class Estrella extends SpriteComponent  with HasGameRef<ClaseGame>,CollisionCallbacks{
+class Estrella extends SpriteComponent with HasGameRef<ClaseGame>,CollisionCallbacks{
 
   final _collisionStartColor = Colors.black87;
   final _defaultColor = Colors.red;

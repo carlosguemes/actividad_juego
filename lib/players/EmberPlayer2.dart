@@ -9,7 +9,7 @@ import '../elementos/Estrella.dart';
 import '../elementos/Gota.dart';
 import '../games/ClaseGame.dart';
 
-class EmberPlayer extends SpriteAnimationComponent
+class EmberPlayer2 extends SpriteAnimationComponent
     with HasGameRef<ClaseGame>,KeyboardHandler,CollisionCallbacks {
 
   int horizontalDirection = 0;
@@ -31,7 +31,7 @@ class EmberPlayer extends SpriteAnimationComponent
 
   double posicionInicialY = 0.0;
 
-  EmberPlayer({
+  EmberPlayer2({
     required super.position,
   }) : super(size: Vector2.all(64), anchor: Anchor.center) {
     posicionInicialY = position.y;
@@ -119,43 +119,42 @@ class EmberPlayer extends SpriteAnimationComponent
     verticalDirection = 0;
     // TODO: implement onKeyEvent
 
-    if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
-        keysPressed.contains(LogicalKeyboardKey.keyW)) {
+    if (keysPressed.contains(LogicalKeyboardKey.numpad4) &&
+        keysPressed.contains(LogicalKeyboardKey.numpad2)) {
       horizontalDirection = -1;
       verticalDirection = 1;
     }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.keyD) &&
-        keysPressed.contains(LogicalKeyboardKey.keyS)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad6) &&
+        keysPressed.contains(LogicalKeyboardKey.numpad2)) {
       horizontalDirection = 1;
       verticalDirection = 1;
     }
 
-    else if (keysPressed.contains(LogicalKeyboardKey.keyD) &&
-        keysPressed.contains(LogicalKeyboardKey.keyW)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad6) &&
+        keysPressed.contains(LogicalKeyboardKey.numpad8)) {
       horizontalDirection = 1;
       verticalDirection = -1;
     }
 
-    else if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
-        keysPressed.contains(LogicalKeyboardKey.keyW)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad4) &&
+        keysPressed.contains(LogicalKeyboardKey.numpad8)) {
       horizontalDirection = -1;
       verticalDirection = -1;
     }
 
-    else if (keysPressed.contains(LogicalKeyboardKey.keyD)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad6)) {
       horizontalDirection = 1;
     }
 
-    else if (keysPressed.contains(LogicalKeyboardKey.keyA)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad4)) {
       horizontalDirection = -1;
     }
 
-    else if (keysPressed.contains(LogicalKeyboardKey.keyS)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad2)) {
       verticalDirection = 1;
     }
 
-    else if (keysPressed.contains(LogicalKeyboardKey.keyW)) {
+    else if (keysPressed.contains(LogicalKeyboardKey.numpad8)) {
       verticalDirection = -1;
     }
 
