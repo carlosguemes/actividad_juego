@@ -6,6 +6,9 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
+import '../elementos/Estrella.dart';
+import '../elementos/Gota.dart';
+
 class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
   ClaseGame();
 
@@ -50,6 +53,24 @@ class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
 
     mapComponent = await TiledComponent.load('mapa_prueba.tmx', Vector2(32*wScale, 32*hScale));
     world.add(mapComponent);
+
+    ObjectGroup? estrellas=mapComponent.tileMap.getLayer<ObjectGroup>("estrellas");
+
+    for(final estrella in estrellas!.objects){
+      Estrella spriteStar = Estrella(
+          position: Vector2(estrella.x * wScale,estrella.y * hScale),
+          size: Vector2(32*wScale, 32*hScale));
+      //spriteStar.sprite=Sprite(images.fromCache('star.png'));
+      add(spriteStar);
+    }
+
+    ObjectGroup? gotas=mapComponent.tileMap.getLayer<ObjectGroup>("gotas");
+
+    for(final gota in gotas!.objects){
+      Gota spriteGota = Gota(position: Vector2(gota.x * wScale,gota.y * hScale),
+          size: Vector2(32*wScale, 32*hScale));
+      world.add(spriteGota);
+    }
   }
 
 }
