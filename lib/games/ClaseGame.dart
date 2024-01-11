@@ -8,6 +8,8 @@ import 'package:flame_tiled/flame_tiled.dart';
 
 import '../elementos/Estrella.dart';
 import '../elementos/Gota.dart';
+import '../players/EmberPlayer.dart';
+import '../players/WaterPlayer.dart';
 
 class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
   ClaseGame();
@@ -23,6 +25,9 @@ class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
   double hScale = 1.0;
 
   late double tamanyo;
+
+  late EmberPlayer _player;
+  late WaterPlayer _water;
 
   @override
   Color backgroundColor() {
@@ -71,6 +76,16 @@ class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
           size: Vector2(32*wScale, 32*hScale));
       world.add(spriteGota);
     }
+
+    _player = EmberPlayer(
+      position: Vector2(20, canvasSize.y-100),
+    );
+    world.add(_player);
+
+    _water = WaterPlayer(
+      position: Vector2(canvasSize.x/2 - 50, canvasSize.y/2 + 50),
+    );
+    world.add(_water);
   }
 
 }

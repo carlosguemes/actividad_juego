@@ -165,6 +165,7 @@ class EmberPlayer extends SpriteAnimationComponent
   @override
   void update(double dt) {
     velocidad.x = horizontalDirection * aceleracion;
+    velocidad.y = verticalDirection * aceleracion;
     position += velocidad * dt;
 
     screenWidth = gameRef.size.x;
