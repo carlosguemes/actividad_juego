@@ -31,7 +31,7 @@ class ClaseGame extends Forge2DGame with
 
   late double tamanyo;
 
-  late EmberPlayer _player;
+  late EmberPlayerBody _player;
   late EmberPlayer2 _player2;
   late WaterPlayer _water;
 
@@ -92,9 +92,9 @@ class ClaseGame extends Forge2DGame with
       add(tierraBody);
     }
 
-    _player = EmberPlayer(
-      position: Vector2(20, canvasSize.y-100),
-        size: Vector2(64*wScale, 64*hScale)
+    _player = EmberPlayerBody(
+      initialPosition: Vector2(200, canvasSize.y-canvasSize.y/2),
+        tamano: Vector2(64*wScale, 64*hScale)
     );
     world.add(_player);
 

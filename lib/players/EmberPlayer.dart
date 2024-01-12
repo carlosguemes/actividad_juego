@@ -12,9 +12,6 @@ import '../games/ClaseGame.dart';
 class EmberPlayer extends SpriteAnimationComponent
     with HasGameRef<ClaseGame> {
 
-  late int iTipo=-1;
-
-
   EmberPlayer({
     required super.position, required super.size
   }) : super( anchor: Anchor.center);
@@ -36,7 +33,7 @@ class EmberPlayer extends SpriteAnimationComponent
 
 class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallbacks{
   final Vector2 velocidad = Vector2.zero();
-  final double aceleracion = 200;
+  final double aceleracion = 1000;
   late int iTipo=-1;
   late Vector2 tamano;
   int horizontalDirection = 0;
@@ -68,27 +65,12 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
     FixtureDef fixtureDef=FixtureDef(
         shape,
         //density: 10.0,
-        friction: 0.2,
+        //friction: 0.2,
         restitution: 0.5, userData: this
     );
     cuerpo.createFixture(fixtureDef);
 
     return cuerpo;
-
-    /*
-    FixtureDef(
-      CircleShape()..radius = tamano.x/2,
-      restitution: 0.8,
-      friction: 0.4,
-    );
-
-    BodyDef(
-      angularDamping: 0.8,
-      position: initialPosition ?? Vector2.zero(),
-      type: BodyType.dynamic,
-
-    );
-*/
   }
 
   @override
@@ -107,101 +89,73 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
 
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+
+
     // TODO: implement onKeyEvent
-    //print("TECLADO PRESIONADO: "+event.data.logicalKey.keyId.toString());
-    /*if(keysPressed.contains(LogicalKeyboardKey.arrowRight)){
-      position.x+=20;
-    }
-    else if(keysPressed.contains(LogicalKeyboardKey.arrowLeft)){
-      position.x-=20;
-    }
-    else if(keysPressed.contains(LogicalKeyboardKey.arrowUp)){
-      position.y-=20;
-    }
-    else if(keysPressed.contains(LogicalKeyboardKey.arrowDown)){
-      position.y+=20;
-    }*/
 
-    final bool isKeyDown = event is RawKeyDownEvent;
-    final bool isKeyUp = event is RawKeyUpEvent;
-    //print("3333333---------->>>>>>>>>>>.   ${isKeyDown}     ${isKeyUp}");
-
-    //if(isKeyDown){
       horizontalDirection = 0;
       verticalDirection = 0;
 
-      /*if((keysPressed.contains(LogicalKeyboardKey.keyA) ||
-          keysPressed.contains(LogicalKeyboardKey.arrowLeft))){
-        horizontalDirection=-1;
+      final bool isKeyDown = event is RawKeyDownEvent;
+      final bool isKeyUp = event is RawKeyUpEvent;
+
+      if(isKeyDown) {
+        if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
+            keysPressed.contains(LogicalKeyboardKey.keyS)) {
+          horizontalDirection = -1;
+          verticalDirection = 1;
+        }
+        else if (keysPressed.contains(LogicalKeyboardKey.keyD) &&
+            keysPressed.contains(LogicalKeyboardKey.keyS)) {
+          horizontalDirection = 1;
+          verticalDirection = 1;
+        }
+
+        else if (keysPressed.contains(LogicalKeyboardKey.keyD) &&
+            keysPressed.contains(LogicalKeyboardKey.keyW)) {
+          horizontalDirection = 1;
+          verticalDirection = -1;
+        }
+
+        else if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
+            keysPressed.contains(LogicalKeyboardKey.keyW)) {
+          horizontalDirection = -1;
+          verticalDirection = -1;
+        }
+
+        else if (keysPressed.contains(LogicalKeyboardKey.keyD)) {
+          horizontalDirection = 1;
+        }
+
+        else if (keysPressed.contains(LogicalKeyboardKey.keyA)) {
+          horizontalDirection = -1;
+        }
+
+        else if (keysPressed.contains(LogicalKeyboardKey.keyS)) {
+          verticalDirection = 1;
+        }
+
+        else if (keysPressed.contains(LogicalKeyboardKey.keyW)) {
+          verticalDirection = -1;
+        }
+
+        if(keysPressed.contains(LogicalKeyboardKey.space)){
+          if(blEspacioLiberado)jumpSpeed=2000;
+          blEspacioLiberado=false;
+          //body.gravityOverride=Vector2(0, -20);
+          //this.bodyDef?.gravityOverride=Vector2(0, -20);
+        }
       }
-      else if((keysPressed.contains(LogicalKeyboardKey.keyD) ||
-          keysPressed.contains(LogicalKeyboardKey.arrowRight))){
-        horizontalDirection=1;
+      else if(isKeyUp){
+
+        blEspacioLiberado=true;
+        //}
+
       }
 
+      else{
 
-      if((keysPressed.contains(LogicalKeyboardKey.keyW) ||
-          keysPressed.contains(LogicalKeyboardKey.arrowUp))){
-        verticalDirection=-1;
       }
-      else if((keysPressed.contains(LogicalKeyboardKey.keyS) ||
-          keysPressed.contains(LogicalKeyboardKey.arrowDown))){
-        verticalDirection=1;
-      }
-
-      //print("---------->>>>>>>>>>>.   ${blEspacioLiberado}");
-      if(keysPressed.contains(LogicalKeyboardKey.space)){
-        if(blEspacioLiberado)jumpSpeed=2000;
-        blEspacioLiberado=false;
-        //body.gravityOverride=Vector2(0, -20);
-        //this.bodyDef?.gravityOverride=Vector2(0, -20);
-      }*/
-    //}
-    /*else if(isKeyUp){
-      //if(keysPressed.contains(LogicalKeyboardKey.space)){
-      //print("222222222---------->>>>>>>>>>>.   ${blEspacioLiberado}");
-      blEspacioLiberado=true;
-      //}
-    }*/
-
-    if (keysPressed.contains(LogicalKeyboardKey.numpad4) &&
-        keysPressed.contains(LogicalKeyboardKey.numpad2)) {
-      horizontalDirection = -1;
-      verticalDirection = 1;
-    }
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad6) &&
-        keysPressed.contains(LogicalKeyboardKey.numpad2)) {
-      horizontalDirection = 1;
-      verticalDirection = 1;
-    }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad6) &&
-        keysPressed.contains(LogicalKeyboardKey.numpad8)) {
-      horizontalDirection = 1;
-      verticalDirection = -1;
-    }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad4) &&
-        keysPressed.contains(LogicalKeyboardKey.numpad8)) {
-      horizontalDirection = -1;
-      verticalDirection = -1;
-    }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad6)) {
-      horizontalDirection = 1;
-    }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad4)) {
-      horizontalDirection = -1;
-    }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad2)) {
-      verticalDirection = 1;
-    }
-
-    else if (keysPressed.contains(LogicalKeyboardKey.numpad8)) {
-      verticalDirection = -1;
-    }
     return true;
   }
 
@@ -222,15 +176,6 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
     velocidad.y += -1 * jumpSpeed;
     jumpSpeed=0;
 
-    // print("--------->>>>>>>>> ${velocidad}");
-    //game.mapComponent.position -= velocity * dt;
-
-    /**
-     * IMPORTANTE! Para mover el personaje debemos APLICAR FUERZAS al CUERPO
-     * NO mover las coordenadas usando el center ya que luego cuando el objeto REPOSA en el suelo,
-     * este pasa a modo "dormido" y para despertarle DEBEMOS usar FUERZAS y no tocar el center.
-     * Ver documentacion sobre BOX2D (https://www.iforce2d.net/b2dtut/forces)
-     */
     //center.add((velocity * dt));
     body.applyLinearImpulse(velocidad*dt*1000);
     //body.applyAngularImpulse(3);
