@@ -140,21 +140,17 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
         }
 
         if(keysPressed.contains(LogicalKeyboardKey.space)){
-          if(blEspacioLiberado)jumpSpeed=2000;
-          blEspacioLiberado=false;
-          //body.gravityOverride=Vector2(0, -20);
+          if(blEspacioLiberado) { //jumpSpeed=2000;
+            blEspacioLiberado = false;
+            body.gravityOverride = Vector2(0, -40);
+          }
           //this.bodyDef?.gravityOverride=Vector2(0, -20);
         }
       }
       else if(isKeyUp){
-
         blEspacioLiberado=true;
+        body.gravityOverride = Vector2(0, 40);
         //}
-
-      }
-
-      else{
-
       }
     return true;
   }
@@ -173,8 +169,9 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
 
     velocidad.x = horizontalDirection * aceleracion;
     velocidad.y = verticalDirection * aceleracion;
-    velocidad.y += -1 * jumpSpeed;
-    jumpSpeed=0;
+
+    /*velocidad.y += -1 * jumpSpeed;
+    jumpSpeed=0;*/
 
     //center.add((velocity * dt));
     body.applyLinearImpulse(velocidad*dt*1000);
