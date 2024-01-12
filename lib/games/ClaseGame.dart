@@ -6,16 +6,20 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
+import '../bodies/TierraBody.dart';
 import '../elementos/Estrella.dart';
 import '../elementos/Gota.dart';
 import '../players/EmberPlayer.dart';
 import '../players/EmberPlayer2.dart';
 import '../players/WaterPlayer.dart';
 
-class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
+import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flame_forge2d/forge2d_game.dart';
+
+class ClaseGame extends Forge2DGame with
+    HasKeyboardHandlerComponents,HasCollisionDetection {
   ClaseGame();
 
-  final world = World();
   late final CameraComponent cameraComponent;
   late TiledComponent mapComponent;
 
@@ -77,6 +81,15 @@ class ClaseGame extends FlameGame with HasKeyboardHandlerComponents {
       Gota spriteGota = Gota(position: Vector2(gota.x * wScale,gota.y * hScale),
           size: Vector2(32*wScale, 32*hScale));
       world.add(spriteGota);
+    }
+
+    ObjectGroup? tierras=mapComponent.tileMap.getLayer<ObjectGroup>("Ground");
+
+    for(final tiledObjectTierra in tierras!.objects){
+      TierraBody tierraBody = TierraBody(tiledBody: tiledObjectTierra,
+          scales: Vector2(wScale,hScale));
+      //tierraBody.onBeginContact=InicioContactosDelJuego;
+      add(tierraBody);
     }
 
     _player = EmberPlayer(
