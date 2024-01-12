@@ -83,10 +83,10 @@ class ClaseGame extends Forge2DGame with
       world.add(spriteGota);
     }
 
-    ObjectGroup? tierras=mapComponent.tileMap.getLayer<ObjectGroup>("Ground");
+    ObjectGroup? tierras = mapComponent.tileMap.getLayer<ObjectGroup>("ground");
 
-    for(final tiledObjectTierra in tierras!.objects){
-      TierraBody tierraBody = TierraBody(tiledBody: tiledObjectTierra,
+    for(final tierra in tierras!.objects){
+      TierraBody tierraBody = TierraBody(tiledBody: tierra,
           scales: Vector2(wScale,hScale));
       //tierraBody.onBeginContact=InicioContactosDelJuego;
       add(tierraBody);
@@ -94,6 +94,7 @@ class ClaseGame extends Forge2DGame with
 
     _player = EmberPlayer(
       position: Vector2(20, canvasSize.y-100),
+        size: Vector2(64*wScale, 64*hScale)
     );
     world.add(_player);
 
@@ -104,7 +105,9 @@ class ClaseGame extends Forge2DGame with
 
     _player2 = EmberPlayer2(
       position: Vector2(200, canvasSize.y-100),
+      size: Vector2(64*wScale, 64*hScale)
     );
+
     world.add(_player2);
   }
 
