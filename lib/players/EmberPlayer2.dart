@@ -15,7 +15,7 @@ class EmberPlayer2 extends SpriteAnimationComponent
   int horizontalDirection = 0;
   int verticalDirection = 0;
   final Vector2 velocidad = Vector2.zero();
-  double aceleracion = 500;
+  double aceleracion = 200;
   bool derecha = true;
 
   double screenWidth = 0;
