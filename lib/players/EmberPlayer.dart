@@ -120,7 +120,7 @@ class EmberPlayer extends SpriteAnimationComponent
     // TODO: implement onKeyEvent
 
     if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
-        keysPressed.contains(LogicalKeyboardKey.keyW)) {
+        keysPressed.contains(LogicalKeyboardKey.keyS)) {
       horizontalDirection = -1;
       verticalDirection = 1;
     }
