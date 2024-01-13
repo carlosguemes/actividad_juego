@@ -23,8 +23,8 @@ class BarraVida extends PositionComponent {
     // Dibujar el contorno de la barra de vida
     c.drawRect(
       Rect.fromPoints(
-        Offset(offsetX*tamanoX, offsetY*tamanoY), // Añadir margen izquierdo y superior
-        Offset(offsetX*tamanoX + barraVidaWidth, offsetY*tamanoY + barraVidaHeight), // Añadir margen izquierdo y superior
+        Offset(offsetX*tamanoX-1, offsetY*tamanoY-1), // Añadir margen izquierdo y superior
+        Offset(offsetX*tamanoX + barraVidaWidth+2, offsetY*tamanoY + barraVidaHeight+2), // Añadir margen izquierdo y superior
       ),
       Paint()..color = Colors.black,
     );
