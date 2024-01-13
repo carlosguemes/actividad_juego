@@ -6,6 +6,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
+import '../bodies/GotaBody.dart';
 import '../bodies/TierraBody.dart';
 import '../elementos/Estrella.dart';
 import '../elementos/Gota.dart';
@@ -78,9 +79,14 @@ class ClaseGame extends Forge2DGame with
     ObjectGroup? gotas=mapComponent.tileMap.getLayer<ObjectGroup>("gotas");
 
     for(final gota in gotas!.objects){
-      Gota spriteGota = Gota(position: Vector2(gota.x * wScale,gota.y * hScale),
+      /*Gota spriteGota = Gota(position: Vector2(gota.x * wScale,gota.y * hScale),
           size: Vector2(32*wScale, 32*hScale));
-      world.add(spriteGota);
+      world.add(spriteGota);*/
+
+      GotaBody gotaBody = GotaBody(posXY: Vector2(gota.x*wScale,gota.y*hScale),
+          tamWH: Vector2(32*wScale,32*hScale));
+      gotaBody.onBeginContact=InicioContactosDelJuego;
+      add(gotaBody);
     }
 
     ObjectGroup? tierras = mapComponent.tileMap.getLayer<ObjectGroup>("ground");
@@ -109,6 +115,16 @@ class ClaseGame extends Forge2DGame with
     );
 
     world.add(_player2);
+  }
+
+  void InicioContactosDelJuego(Object objeto,Contact contact){
+    if(objeto is GotaBody){
+      _player.iVidas--;
+      print('Vidas: ' + _player.iVidas.toString());
+      if(_player.iVidas==0){
+        _player.removeFromParent();
+      }
+    }
   }
 
 }

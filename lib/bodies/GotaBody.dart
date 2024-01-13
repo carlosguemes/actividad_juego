@@ -1,4 +1,4 @@
-import 'package:flame/effects.dart';
+
 import 'package:flame_forge2d/body_component.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:forge2d/src/dynamics/body.dart';
@@ -41,7 +41,7 @@ class GotaBody extends BodyComponent<ClaseGame> with ContactCallbacks{
     // TODO: implement onLoad
     await super.onLoad();
 
-    Gota gotaPlayer=Gota(position: Vector2.zero(), size: tamWH);
+    Gota gotaPlayer=Gota(position: Vector2.all(-21), size: tamWH);
     add(gotaPlayer);
 
     xIni=posXY.x;

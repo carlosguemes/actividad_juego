@@ -33,8 +33,8 @@ class Gota extends SpriteAnimationComponent
 
     hitbox = RectangleHitbox()
       ..paint = defaultPaint
-      ..isSolid=true
-      ..renderShape = true;
+      ..isSolid=true;
+      //..renderShape = true;
     add(hitbox);
 
     super.onLoad();
