@@ -119,14 +119,13 @@ class ClaseGame extends Forge2DGame with
 
     world.add(_player2);
 
-    barraVida = BarraVida(_player);
+    barraVida = BarraVida(_player, wScale, hScale);
     world.add(barraVida);
   }
 
   void InicioContactosDelJuego(Object objeto,Contact contact){
     if(objeto is GotaBody){
       _player.iVidas--;
-      print('Vidas: ' + _player.iVidas.toString());
       if(_player.iVidas==0){
         _player.removeFromParent();
       }
