@@ -10,6 +10,7 @@ import '../bodies/GotaBody.dart';
 import '../bodies/TierraBody.dart';
 import '../elementos/Estrella.dart';
 import '../elementos/Gota.dart';
+import '../players/BarraVida.dart';
 import '../players/EmberPlayer.dart';
 import '../players/EmberPlayer2.dart';
 import '../players/WaterPlayer.dart';
@@ -35,6 +36,7 @@ class ClaseGame extends Forge2DGame with
   late EmberPlayerBody _player;
   late EmberPlayer2 _player2;
   late WaterPlayer _water;
+  late BarraVida barraVida;
 
   @override
   Color backgroundColor() {
@@ -85,7 +87,7 @@ class ClaseGame extends Forge2DGame with
 
       GotaBody gotaBody = GotaBody(posXY: Vector2(gota.x*wScale,gota.y*hScale),
           tamWH: Vector2(32*wScale,32*hScale));
-      gotaBody.onBeginContact=InicioContactosDelJuego;
+      //gotaBody.onBeginContact=InicioContactosDelJuego;
       add(gotaBody);
     }
 
@@ -102,6 +104,7 @@ class ClaseGame extends Forge2DGame with
       initialPosition: Vector2(200, canvasSize.y-canvasSize.y/2),
         tamano: Vector2(64*wScale, 64*hScale)
     );
+    _player.onBeginContact=InicioContactosDelJuego;
     world.add(_player);
 
     _water = WaterPlayer(
@@ -115,6 +118,9 @@ class ClaseGame extends Forge2DGame with
     );
 
     world.add(_player2);
+
+    barraVida = BarraVida(_player);
+    world.add(barraVida);
   }
 
   void InicioContactosDelJuego(Object objeto,Contact contact){

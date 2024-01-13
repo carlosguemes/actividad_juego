@@ -155,8 +155,6 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
     return true;
   }
 
-
-
   @override
   void update(double dt) {
     // TODO: implement update
