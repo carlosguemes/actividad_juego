@@ -103,7 +103,11 @@ class ClaseGame extends Forge2DGame with
 
     _player = EmberPlayerBody(
       initialPosition: Vector2(200, canvasSize.y-canvasSize.y/2),
-        tamano: Vector2(64*wScale, 64*hScale), keyAbajo: LogicalKeyboardKey.keyS, keyArriba: LogicalKeyboardKey.keyW, keyDerecha: LogicalKeyboardKey.keyD, keyIzquierda: LogicalKeyboardKey.keyA
+        tamano: Vector2(64*wScale, 64*hScale),
+        keyAbajo: LogicalKeyboardKey.keyS,
+        keyArriba: LogicalKeyboardKey.keyW,
+        keyDerecha: LogicalKeyboardKey.keyD,
+        keyIzquierda: LogicalKeyboardKey.keyA
     );
     _player.onBeginContact=InicioContactosDelJuego;
     world.add(_player);
@@ -121,6 +125,7 @@ class ClaseGame extends Forge2DGame with
         keyDerecha: LogicalKeyboardKey.numpad6,
         keyIzquierda: LogicalKeyboardKey.numpad4
     );
+    _player2.onBeginContact=InicioContactosDelJuegoPlayerDos;
     world.add(_player2);
 
     barraVida = BarraVida(_player, wScale, hScale);
@@ -132,6 +137,15 @@ class ClaseGame extends Forge2DGame with
       _player.iVidas--;
       if(_player.iVidas==0){
         _player.removeFromParent();
+      }
+    }
+  }
+
+  void InicioContactosDelJuegoPlayerDos(Object objeto,Contact contact){
+    if(objeto is GotaBody){
+      _player2.iVidas--;
+      if(_player2.iVidas==0){
+        _player2.removeFromParent();
       }
     }
   }
