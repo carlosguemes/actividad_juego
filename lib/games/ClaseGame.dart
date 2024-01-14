@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:flutter/services.dart';
 
 import '../bodies/GotaBody.dart';
 import '../bodies/TierraBody.dart';
@@ -34,7 +35,7 @@ class ClaseGame extends Forge2DGame with
   late double tamanyo;
 
   late EmberPlayerBody _player;
-  late EmberPlayer2 _player2;
+  late EmberPlayerBody _player2;
   late WaterPlayer _water;
   late BarraVida barraVida;
 
@@ -102,7 +103,7 @@ class ClaseGame extends Forge2DGame with
 
     _player = EmberPlayerBody(
       initialPosition: Vector2(200, canvasSize.y-canvasSize.y/2),
-        tamano: Vector2(64*wScale, 64*hScale)
+        tamano: Vector2(64*wScale, 64*hScale), keyAbajo: LogicalKeyboardKey.keyS, keyArriba: LogicalKeyboardKey.keyW, keyDerecha: LogicalKeyboardKey.keyD, keyIzquierda: LogicalKeyboardKey.keyA
     );
     _player.onBeginContact=InicioContactosDelJuego;
     world.add(_player);
@@ -112,11 +113,14 @@ class ClaseGame extends Forge2DGame with
     );
     world.add(_water);
 
-    _player2 = EmberPlayer2(
-      position: Vector2(200, canvasSize.y-100),
-      size: Vector2(64*wScale, 64*hScale)
+    _player2 = EmberPlayerBody(
+        initialPosition: Vector2(400, canvasSize.y-canvasSize.y/2),
+        tamano: Vector2(64*wScale, 64*hScale),
+        keyAbajo: LogicalKeyboardKey.numpad2,
+        keyArriba: LogicalKeyboardKey.numpad8,
+        keyDerecha: LogicalKeyboardKey.numpad6,
+        keyIzquierda: LogicalKeyboardKey.numpad4
     );
-
     world.add(_player2);
 
     barraVida = BarraVida(_player, wScale, hScale);

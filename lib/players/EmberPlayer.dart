@@ -45,8 +45,13 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
   bool blEspacioLiberado=true;
   int iVidas=3;
 
+  LogicalKeyboardKey keyIzquierda;
+  LogicalKeyboardKey keyArriba;
+  LogicalKeyboardKey keyAbajo;
+  LogicalKeyboardKey keyDerecha;
+
   EmberPlayerBody({required this.initialPosition,
-    required this.tamano})
+    required this.tamano, required this.keyIzquierda, required this.keyArriba, required this.keyAbajo, required this.keyDerecha})
       : super();
 
   @override
@@ -100,42 +105,42 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
       final bool isKeyUp = event is RawKeyUpEvent;
 
       if(isKeyDown) {
-        if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
-            keysPressed.contains(LogicalKeyboardKey.keyS)) {
+        if (keysPressed.contains(keyIzquierda) &&
+            keysPressed.contains(keyAbajo)) {
           horizontalDirection = -3;
           verticalDirection = 3;
         }
-        else if (keysPressed.contains(LogicalKeyboardKey.keyD) &&
-            keysPressed.contains(LogicalKeyboardKey.keyS)) {
+        else if (keysPressed.contains(keyDerecha) &&
+            keysPressed.contains(keyAbajo)) {
           horizontalDirection = 3;
           verticalDirection = 3;
         }
 
-        else if (keysPressed.contains(LogicalKeyboardKey.keyD) &&
-            keysPressed.contains(LogicalKeyboardKey.keyW)) {
+        else if (keysPressed.contains(keyDerecha) &&
+            keysPressed.contains(keyArriba)) {
           horizontalDirection = 3;
           verticalDirection = -3;
         }
 
-        else if (keysPressed.contains(LogicalKeyboardKey.keyA) &&
-            keysPressed.contains(LogicalKeyboardKey.keyW)) {
+        else if (keysPressed.contains(keyIzquierda) &&
+            keysPressed.contains(keyArriba)) {
           horizontalDirection = -3;
           verticalDirection = -3;
         }
 
-        else if (keysPressed.contains(LogicalKeyboardKey.keyD)) {
+        else if (keysPressed.contains(keyDerecha)) {
           horizontalDirection = 3;
         }
 
-        else if (keysPressed.contains(LogicalKeyboardKey.keyA)) {
+        else if (keysPressed.contains(keyIzquierda)) {
           horizontalDirection = -3;
         }
 
-        else if (keysPressed.contains(LogicalKeyboardKey.keyS)) {
+        else if (keysPressed.contains(keyAbajo)) {
           verticalDirection = 3;
         }
 
-        else if (keysPressed.contains(LogicalKeyboardKey.keyW)) {
+        else if (keysPressed.contains(keyArriba)) {
           verticalDirection = -3;
         }
 
