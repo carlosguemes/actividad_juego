@@ -15,8 +15,10 @@ class GotaBody extends BodyComponent<ClaseGame> with ContactCallbacks{
   double xContador=0;
   double dAnimDireccion=-1;
   double dVelocidadAnim=1;
+  double tamano;
+  final double tamanoPred = 15.75;
 
-  GotaBody({required this.posXY,required this.tamWH}):super();
+  GotaBody({required this.posXY,required this.tamWH, required this.tamano}):super();
 
   @override
   Body createBody() {
@@ -41,7 +43,7 @@ class GotaBody extends BodyComponent<ClaseGame> with ContactCallbacks{
     // TODO: implement onLoad
     await super.onLoad();
 
-    Gota gotaPlayer=Gota(position: Vector2.all(-21), size: tamWH);
+    Gota gotaPlayer=Gota(position: Vector2.all(-(tamanoPred * tamano)), size: tamWH);
     add(gotaPlayer);
 
     xIni=posXY.x;

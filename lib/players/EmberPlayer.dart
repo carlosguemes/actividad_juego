@@ -51,7 +51,11 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
   LogicalKeyboardKey keyDerecha;
 
   EmberPlayerBody({required this.initialPosition,
-    required this.tamano, required this.keyIzquierda, required this.keyArriba, required this.keyAbajo, required this.keyDerecha})
+    required this.tamano,
+    required this.keyIzquierda,
+    required this.keyArriba,
+    required this.keyAbajo,
+    required this.keyDerecha})
       : super();
 
   @override

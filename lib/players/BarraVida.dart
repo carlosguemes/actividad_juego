@@ -42,7 +42,7 @@ class BarraVida extends PositionComponent {
     final textPainter = TextPainter(
       text: TextSpan(
         text: 'Vidas del jugador: ${jugador.iVidas}',
-        style: TextStyle(color: Colors.black, fontSize: 48),
+        style: TextStyle(color: Colors.black, fontSize: 36*tamanoX),
       ),
       textDirection: TextDirection.ltr,
     );

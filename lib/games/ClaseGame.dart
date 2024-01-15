@@ -87,7 +87,7 @@ class ClaseGame extends Forge2DGame with
       world.add(spriteGota);*/
 
       GotaBody gotaBody = GotaBody(posXY: Vector2(gota.x*wScale,gota.y*hScale),
-          tamWH: Vector2(32*wScale,32*hScale));
+          tamWH: Vector2(32*wScale,32*hScale), tamano: wScale);
       //gotaBody.onBeginContact=InicioContactosDelJuego;
       add(gotaBody);
     }
