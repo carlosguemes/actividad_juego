@@ -40,6 +40,7 @@ class GotaBody extends BodyComponent<ClaseGame> with ContactCallbacks{
 
   @override
   Future<void> onLoad() async{
+    renderBody=false;
     // TODO: implement onLoad
     await super.onLoad();
 

@@ -110,12 +110,12 @@ class ClaseGame extends Forge2DGame with
         keyIzquierda: LogicalKeyboardKey.keyA
     );
     _player.onBeginContact=InicioContactosDelJuego;
-    world.add(_player);
+    add(_player);
 
     _water = WaterPlayer(
       position: Vector2(canvasSize.x/2 - 50, canvasSize.y/2 + 50),
     );
-    world.add(_water);
+    add(_water);
 
     _player2 = EmberPlayerBody(
         initialPosition: Vector2(400, canvasSize.y-canvasSize.y/2),
@@ -126,10 +126,10 @@ class ClaseGame extends Forge2DGame with
         keyIzquierda: LogicalKeyboardKey.numpad4
     );
     _player2.onBeginContact=InicioContactosDelJuegoPlayerDos;
-    world.add(_player2);
+    add(_player2);
 
     barraVida = BarraVida(_player, wScale, hScale);
-    world.add(barraVida);
+    add(barraVida);
   }
 
   void InicioContactosDelJuego(Object objeto,Contact contact){

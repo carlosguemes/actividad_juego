@@ -85,6 +85,7 @@ class EmberPlayerBody extends BodyComponent with KeyboardHandler,ContactCallback
   @override
   Future<void> onLoad() {
     // TODO: implement onLoad
+    renderBody=false;
 
     emberPlayer=EmberPlayer(position: Vector2(0,0), size:tamano);
     add(emberPlayer);
